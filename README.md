@@ -41,10 +41,10 @@ python main.py
 
 ## How to Use
 
-1. **Set Start and End Points**: Left-click on a grid square to set the start point (Caveman), and left-click again to set the end point (Home).
-2. **Create Barriers**: Continue left-clicking to place barriers (Dinosaurs) on the grid. These represent obstacles the caveman must navigate around.
+1. **Set Start and End Points**: Double click on a grid square to set the start point (Cave), and double click again somewhere else on screen to set the end point (caveman).
+2. **Create Barriers**: Can double click on space to put one barrier or double click and drag to place multiple barriers (Dinosaurs) on the grid. These represent obstacles the caveman must navigate around.
 3. **Start Pathfinding**: Press the spacebar to begin the visualization. The algorithm will start, and the path will be displayed once found.
-4. **Reset**: Right-click to remove individual barriers, start, or end points. Press `R` to reset the entire grid, or `C` to clear and start over.
+4. **Reset**: Right-click to remove individual barriers (does not work a the moment), start, or end points. Press `R` to reset the entire grid, or `C` to clear and start over.
 
 ## Algorithm Used
 
