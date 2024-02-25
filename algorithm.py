@@ -5,7 +5,7 @@ from queue import PriorityQueue
 def h(p1, p2):
     x1, y1 = p1
     x2, y2 = p2
-    return math.sqrt((x1 - x2) ** 2 + (y1 - y2) ** 2)
+    return abs(x1 - x2) + abs(y1 - y2)  # Using Manhattan distance for grid-based pathfinding
 
 def reconstruct_path(came_from, current, draw):
     while current in came_from:
@@ -36,7 +36,7 @@ def algorithm(draw, grid, start, end):
         if current == end:
             reconstruct_path(came_from, end, draw)
             end.make_end()
-            return True
+            return True  # Path found
 
         for neighbor in current.neighbors:
             temp_g_score = g_score[current] + 1
@@ -56,4 +56,4 @@ def algorithm(draw, grid, start, end):
         if current != start:
             current.make_closed()
 
-    return False
+    return False  # No path found

@@ -1,6 +1,7 @@
 import pygame
+import pygame.font
 from utilities import make_grid, draw_grid, get_clicked_pos
-from algorithm import algorithm
+from algorithm import algorithm  # Ensure this is updated to return a boolean
 from node import *
 
 # Initialize pygame
@@ -9,6 +10,7 @@ pygame.init()
 WIDTH = 800
 WIN = pygame.display.set_mode((WIDTH, WIDTH))
 pygame.display.set_caption("Caveman Survival")
+FONT = pygame.font.SysFont("comicsans", 40)
 
 def draw(win, grid, rows, width):
     win.fill(GREEN)
@@ -19,6 +21,12 @@ def draw(win, grid, rows, width):
 
     draw_grid(win, rows, width)
     pygame.display.update()
+
+def show_message(win, message):
+    text = FONT.render(message, True, (255, 0, 0))
+    win.blit(text, (WIDTH / 2 - text.get_width() / 2, WIDTH / 2 - text.get_height() / 2))
+    pygame.display.update()
+    pygame.time.delay(2000)  # Display the message for 2 seconds
 
 def main(win, width):
     ROWS = 50
@@ -71,9 +79,18 @@ def main(win, width):
                         for node in row:
                             node.update_neighbors(grid)
 
-                    algorithm(lambda: draw(win, grid, ROWS, width), grid, start, end)
+                    started = True
+                    path_found = algorithm(lambda: draw(win, grid, ROWS, width), grid, start, end)
+                    started = False
+                    if not path_found:
+                        show_message(win, "No available paths!")
 
                 if event.key == pygame.K_c:
+                    start = None
+                    end = None
+                    grid = make_grid(ROWS, width)
+
+                if event.key == pygame.K_r:  # Resetting the game
                     start = None
                     end = None
                     grid = make_grid(ROWS, width)
